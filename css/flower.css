@@ -1,0 +1,420 @@
+
+body {
+    margin: 0;
+    min-height: 100vh;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background-image: url("https://i.pinimg.com/736x/7b/3a/7c/7b3a7c53358c508e246ba4ea40dcefc7.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    filter: blur(6px);
+    z-index: -1;
+}
+
+a {
+    text-decoration: none;
+}
+
+#back {
+    color: #ffe3f7;
+    font-family: 'Ballerina';
+    font-size: 100px;
+
+    text-shadow:
+        0 0 5px #ff56aa,
+        0 0 10px rgb(99, 3, 51),
+        0 0 20px deeppink,
+        0 0 40px rgb(20, 0, 11);
+}
+
+#back:hover {
+    transform: scale(1.1);
+
+    filter: drop-shadow(0 0 10px #74013a)
+            drop-shadow(0 0 20px #f0c9dc)
+            drop-shadow(0 0 35px #f1b1d4);
+
+    transition: 0.3s;
+}
+
+.cake-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.music-player {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 10px;
+    width: 230px;
+
+    background: rgb(46, 46, 46);
+    backdrop-filter: blur(10px);
+
+    border-radius: 12px;
+    color: white;
+
+    animation: fadeIn 1.5s ease forwards;
+}
+
+.album-cover {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.music-details {
+    overflow: hidden;
+}
+
+.song-title {
+    margin: 0;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.artist {
+    margin: 4px 0;
+    font-size: 12px;
+    color: #cecece;
+}
+
+.playing-text {
+    margin: 0;
+    font-size: 11px;
+    color: #1db954;
+    animation: pulse 1.5s infinite;
+}
+
+/* General animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+}
+
+/* Cake */
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #eac285;
+}
+
+.container {
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+}
+
+.cake {
+    width: 100%;
+    position: absolute;
+    bottom: 60px;
+}
+
+.bottom-layer,
+.top-layer,
+.middle-layer {
+    height: 80px;
+    width: 240px;
+    position: relative;
+    margin: auto;
+    background-repeat: repeat;
+    background-size: 100% 100%, 60px 100px;
+    background-position: 28px 0;
+    background-image: linear-gradient(
+        transparent 50px,
+        #fffefd 50px,
+        #f89ddd 60px,
+        transparent 60px
+    ),
+    radial-gradient(circle at 30px 5px, #fce1f4 30px, #f096d9 31px);
+}
+
+/* Cake layer animations */
+.middle-layer {
+    transform: scale(0.85);
+    top: 72px;
+    animation: rise-1 2s forwards;
+}
+
+@keyframes rise-1 {
+    100% {
+        top: 7px;
+    }
+}
+
+.top-layer {
+    transform: scale(0.7);
+    top: 144px;
+    animation: rise-2 2s 2s forwards;
+}
+
+@keyframes rise-2 {
+    100% {
+        top: 26px;
+    }
+}
+
+/* Candle */
+.candle {
+    background: repeating-linear-gradient(
+        45deg,
+        #fd3018 0,
+        #fd3018 5px,
+        #ffa89e 5px,
+        #ffa89e 10px
+    );
+
+    height: 45px;
+    width: 15px;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    animation: rise-3 1s 4s forwards;
+    cursor: pointer;
+}
+
+@keyframes rise-3 {
+    100% {
+        bottom: 202px;
+    }
+}
+
+/* Flame */
+.candle::after {
+    content: "";
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    background-color: #ffee54;
+    border-radius: 0 50% 50% 50%;
+    transform: scale(0) rotate(45deg);
+    bottom: 50px;
+    left: -0.5px;
+
+    animation: flame 1.5s 5s forwards;
+}
+
+@keyframes flame {
+    100% {
+        transform: scale(1) rotate(45deg);
+    }
+}
+
+/* When candle is blown */
+.candle.blown::after {
+    animation: blow-flame 0.4s forwards;
+}
+
+@keyframes blow-flame {
+    0% {
+        transform: scale(1) rotate(45deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+/* Smoke */
+.candle.blown::before {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 18px;
+    background: #aaa;
+    border-radius: 50%;
+    left: 3px;
+    bottom: 50px;
+    opacity: 0;
+
+    animation: smoke 1.5s 0.2s forwards;
+}
+
+@keyframes smoke {
+    0% {
+        opacity: 0;
+        transform: translateY(0) scale(0.5);
+    }
+
+    30% {
+        opacity: 0.6;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-35px) scale(1.5);
+    }
+}
+
+/* Wish section */
+.wish-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+
+    margin-top: 30px;
+
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Fade in animation */
+.wish-container.show {
+    visibility: visible;
+    animation: wishFadeIn 1.5s ease forwards;
+}
+
+.wish-container h1 {
+    color: #ffe3f7;
+    font-family: 'Ballerina';
+    font-size: 45px;
+
+    text-shadow: 0 0 10px deeppink;
+}
+
+.wish-container input {
+    padding: 12px;
+    width: 280px;
+
+    border: 2px solid pink;
+    border-radius: 20px;
+    outline: none;
+
+    text-align: center;
+    font-size: 15px;
+}
+
+.wish-container button {
+    padding: 10px 25px;
+
+    border: none;
+    border-radius: 20px;
+
+    background: deeppink;
+    color: white;
+
+    cursor: pointer;
+}
+
+.wish-container button:hover {
+    background: #ff69b4;
+    transform: scale(1.05);
+}
+
+#wishMessage {
+    color: white;
+    font-size: 16px;
+}
+
+@keyframes wishFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Background blur after blowing the candle */
+body::before {
+    transition: filter 1.5s ease, opacity 1.5s ease;
+}
+
+body.wish-mode::before {
+    filter: blur(12px);
+    opacity: 0.6;
+}
+
+/* Blur the cake after blowing the candle */
+.cake {
+    transition: filter 1.5s ease;
+}
+
+body.wish-mode .cake {
+    filter: blur(6px);
+}
+
+#wishMessage {
+    color: rgb(250, 246, 0);
+    font-size: 50px;
+    font-family: 'Ballerina';
+    opacity: 0;
+
+ text-shadow:
+        0 0 5px #e6ff56,
+        0 0 10px rgb(99, 3, 51),
+        0 0 20px rgb(0, 0, 0),
+        0 0 40px rgb(20, 0, 11);
+
+}
+
+#wishMessage.message-show {
+    animation: messageFadeIn 1.5s ease forwards;
+}
+
+@keyframes messageFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
