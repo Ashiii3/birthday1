@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.cdnfonts.com/css/ballerina-2" rel="stylesheet">
+    <link rel="stylesheet" href="css/flower.css">
+    <title>Birthday cake</title>
+</head>
+<body>
+    
+    <audio id="bgMusic" autoplay loop>
+<source src="Picture/diwk.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-player">
+    <img src="Picture/hozi.jpg" class="album-cover" alt="Album Cover">
+
+    <div class="music-details">
+        <marquee class="song-title" scrollamount="3"> Do i wanna know? - Live At the BBC </marquee>
+        <p class="artist"> Hozier </p>
+        <p class="playing-text">♫ Now Playing</p>
+    </div>
+</div>
+
+
+    <center>
+ <a href="Index.html">
+    <h1 id="back"> Go back </h1>
+        </a>
+
+<div class="container">
+      <div class="cake">
+        <div class="candle" onclick="blowCandle()"></div>
+        <div class="top-layer"></div>
+        <div class="middle-layer"></div>
+        <div class="bottom-layer"></div>
+      </div>
+    
+
+      <div class="wish-container" id="wishContainer">
+    <h1>Make a Wish!</h1>
+
+    <input
+        type="text"
+        id="wishInput"
+        placeholder="Type your wish here..."
+    >
+
+    <button onclick="submitWish()">Submit Wish</button>
+
+    <p id="wishMessage"></p>
+</div>
+
+
+<script>
+
+function blowCandle() {
+    const candle = document.querySelector(".candle");
+    const wishContainer = document.getElementById("wishContainer");
+
+    // Blow out candle
+    candle.classList.add("blown");
+
+    // Blur background and cake
+    document.body.classList.add("wish-mode");
+
+    // Show wish section
+    setTimeout(() => {
+        wishContainer.classList.add("show");
+    }, 700);
+}
+
+function submitWish() {
+    const wishInput = document.getElementById("wishInput");
+    const wishMessage = document.getElementById("wishMessage");
+
+    if (wishInput.value.trim() === "") {
+        wishMessage.textContent = "Don't forget to make a wish!";
+        return;
+    }
+
+    wishMessage.textContent = "Your wish is granted! ✨";
+
+    wishMessage.classList.remove("message-show");
+    void wishMessage.offsetWidth;
+    wishMessage.classList.add("message-show");
+
+    wishInput.value = "";
+}
+
+</script>
+
+</body>
+</html>

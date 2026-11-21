@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.cdnfonts.com/css/ballerina-2" rel="stylesheet">
+    <link rel="stylesheet" href="css/letter.css">
+    <title>Document</title>
+</head>
+<body>
+    
+<div class="balloon-container"></div> 
+
+<script>
+const container = document.querySelector(".balloon-container");
+
+function createHeart() {
+    const heart = document.createElement("div");
+
+    heart.classList.add("heart-balloon");
+    heart.innerHTML = "❤️";
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (5 + Math.random() * 5) + "s";
+    heart.style.fontSize = (20 + Math.random() * 30) + "px";
+
+    container.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 10000);
+}
+
+setInterval(createHeart, 500);
+</script>
+
+
+
+<audio id="bgMusic" autoplay loop>
+<source src="Picture/petter.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-player">
+    <img src="Picture/album.jpg" class="album-cover" alt="Album Cover">
+
+    <div class="music-details">
+        <marquee class="song-title" scrollamount="3"> kung tayo'y nasa isang horror na pelikula tiyak ako ang una mong papatayin </marquee>
+        <p class="artist">Fitter karma</p>
+        <p class="playing-text">♫ Now Playing</p>
+    </div>
+</div>
+
+
+<center>
+    <div>
+        <a href="Index.html">
+    <h1 id="back"> Go back </h1>
+        </a>
+
+         <img src="Picture/letter1.png" style="width: 600px; height: auto;">
+
+</body>
+</html>
